@@ -1,0 +1,32 @@
+<main class="main">
+  <div>
+    <h2 class="header">Websocket Tester</h2>
+  </div>
+  <div class="colonne-verticale">
+    <h1 class="title">{{ title }}</h1>
+    <button class="btn connect-btn" (click)="connect()">Connect</button>
+    <button class="btn disconnect-btn" (click)="disconnect()">Disconnect</button>
+    <input type="text" [(ngModel)]="message" placeholder="Message" class="message-input">
+    <button class="btn send-btn" (click)="send()">Send</button>
+  </div>
+
+  <div class="ligne">
+    <div class="card">
+      <app-speedometer [rpmStr]="rpm" [gaugeValue]="calculatedGaugeRpmValue"></app-speedometer>
+      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
+    </div>
+    <div class="card">
+      <app-temperature [tempStr]="temperature" [gaugeValue]="calculatedGaugeTempValue"></app-temperature>
+      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
+    </div>
+    <div class="card">
+      <app-hygrometer [humStr]="humidity" [gaugeValue]="calculatedGaugeHumValue"></app-hygrometer>
+      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
+    </div>
+  </div>
+  <div class="ligne">
+    <div class="card">
+      message: {{ message }}
+      </div>
+  </div>
+</main>

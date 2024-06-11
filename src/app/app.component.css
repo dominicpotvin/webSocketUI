@@ -1,0 +1,113 @@
+.main {
+  display: grid;
+  grid-template-columns: 20% 80%;
+  height: 80vh; /* Utiliser seulement 90% de la hauteur de la fenêtre de visualisation */
+  width: 100%;
+}
+
+.colonne-verticale {
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  border-right: 1px solid #ccc;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.title {
+  font-size: 32px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.message-input {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 80%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.connect-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.connect-btn:hover {
+  background-color: #45A049;
+  transform: translateY(-2px);
+}
+
+.disconnect-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.disconnect-btn:hover {
+  background-color: #e53935;
+  transform: translateY(-2px);
+}
+
+.send-btn {
+  background-color: #008CBA;
+  color: white;
+}
+
+.send-btn:hover {
+  background-color: #007BB5;
+  transform: translateY(-2px);
+}
+
+.ligne {
+  grid-column: 2 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  height: 30%; /* Chaque ligne occupe un tiers de la hauteur totale de .main */
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  transition: transform 0.3s;
+  width: 250px; /* Taille fixe pour le carré, ajustez selon le besoin */
+  height: 250px; /* Taille fixe pour le carré, gardez la même valeur que la largeur pour un carré parfait */
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.connected {
+  color: green;
+}
+
+.disconnected {
+  color: red;
+}

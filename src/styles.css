@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+    font-family: 'SevenSegment';
+    src: url('/assets/fonts/SevenSegment.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  .seven-segment-text {
+    font-family: 'SevenSegment', sans-serif;
+  }
+@font-face {
+  font-family: 'NineSegment';
+  src: url('/assets/fonts/NineSegment.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.nine-segment-text {
+  font-family: 'NineSegment', sans-serif;
+}
+
+
+@font-face {
+  font-family: 'SevenSegmentHybride';
+  src: url('/assets/fonts/SevenSegmenHybrid.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.seven-segment-hybride-text {
+  font-family: 'SevenSegment', sans-serif;
+}

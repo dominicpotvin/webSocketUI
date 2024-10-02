@@ -1,9 +1,6 @@
-
-import { WebSocketService } from '../services/web-socket.service';
-import { Subscription } from 'rxjs';
+import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NgxGaugeModule } from 'ngx-gauge';
-import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 
 enum NgxGaugeType {
   Full = 'full',
@@ -11,64 +8,51 @@ enum NgxGaugeType {
   Arch = 'arch'
 }
 
-
 @Component({
   selector: 'app-speedometer',
   standalone: true,
+  imports: [CommonModule, NgxGaugeModule],
   templateUrl: './speedometer.component.html',
   styleUrls: ['./speedometer.component.scss'],
-  imports: [NgxGaugeModule]
-
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SpeedometerComponent {
+  private _rpmStr: string = "";
+  private _gaugeValue: number = 0;
 
-  @Input() rpmStr: string = "";
-  @Input() gaugeValue: number = 0;
-  newRpm: number = 0;
+  @Input() set rpmStr(value: string) {
+    console.log('Setting new RPM:', value);
+    this._rpmStr = value;
+    this.cdr.markForCheck();
+  }
+  @Input() isConnected: boolean = false;
+  get connectionStatus(): string {
+    return this.isConnected ? 'Connected' : 'Disconnected';
+  } 
+
+  get rpmStr(): string {
+    return this._rpmStr;
+  }
+
+
+  @Input() set gaugeValue(value: number) {
+    console.log('Setting new gauge value:', value);
+    this._gaugeValue = value;
+    this.cdr.markForCheck();
+  }
+  get gaugeValue(): number {
+    return this._gaugeValue;
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
   gaugeMin = 0;
-  gaugeMax = 3000; 
+  gaugeMax = 3000;
   gaugeUnits = 'rpm';
   gaugeType = NgxGaugeType.Arch;
-
   thresholdConfig = {
     '0': {color: 'green'},
     '1500': {color: 'orange'},
     '2500': {color: 'red'}
-};
-
-
-  private wsSubscription: Subscription | undefined;
-
-  private isConnected = false; 
-
-  constructor(private webSocketService: WebSocketService) {}
-
-  connect(): void {
-    this.webSocketService.initializeWebSocketConnection();
-    this.subscribeToMessages();
-    
-  }
-
-  private subscribeToMessages(): void {
-    this.webSocketService.getMessageObservable('rpm').subscribe(data => {
-      this.rpmStr = data;   
-      this.getConnectionStatusMessage();  
-    });
-  }
-
-  convertData(): void {
-    this.newRpm = parseFloat(this.rpmStr);
-  }
-  
-  updateSpeed(newRpm: number): void {    
-    this.gaugeValue = Math.min(Math.max(newRpm, this.gaugeMin), this.gaugeMax);
-  }
-
-  getConnectionStatusMessage(): string {
-    return this.isConnected ? 'Connected' : 'Not connected';
-  }
-
-  disconnect(): void {
-    this.webSocketService.disconnect();
-  }
+  };
 }

@@ -1,0 +1,46 @@
+<!-- src/app/components/encoder-rotary/encoder-rotary.component.html -->
+<div class="encoder-rotary-card">
+    <h4>Encoder Rotary Data</h4>
+    <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ connectionStatus }}</span></p>
+    <div class="encoder-rotary-data">
+      <table>
+        <tr>
+          <td>ID:</td>
+          <td>{{ encoderRotaryData?.id ?? 'null' }}</td>
+          <td>RPM:</td>
+          <td>{{ encoderRotaryData?.rpm ?? 'null' }}</td>
+        </tr>
+        <tr>
+          <td>Angle:</td>
+          <td>{{ encoderRotaryData?.angle ?? 'null' }}</td>
+          <td>Steps:</td>
+          <td>{{ encoderRotaryData?.steps ?? 'null' }}</td>
+        </tr>
+        <tr>
+          <td>Direction:</td>
+          <td>{{ encoderRotaryData?.direction ?? 'null' }}</td>
+          <td>Speed:</td>
+          <td>{{ encoderRotaryData?.speed ?? 'null' }}</td>
+        </tr>
+        <tr>
+          <td>Acceleration:</td>
+          <td>{{ encoderRotaryData?.acceleration ?? 'null' }}</td>
+          <td>Deceleration:</td>
+          <td>{{ encoderRotaryData?.deceleration ?? 'null' }}</td>
+        </tr>
+        <tr>
+          <td>Torque:</td>
+          <td>{{ encoderRotaryData?.torque ?? 'null' }}</td>
+          <td>Current:</td>
+          <td>{{ encoderRotaryData?.current ?? 'null' }}</td>
+        </tr>
+        <tr>
+          <td>Voltage:</td>
+          <td>{{ encoderRotaryData?.voltage ?? 'null' }}</td>
+          <td>Power:</td>
+          <td>{{ encoderRotaryData?.power ?? 'null' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  

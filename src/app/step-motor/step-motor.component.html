@@ -1,0 +1,45 @@
+<!-- src/app/components/step-motor/step-motor.component.html -->
+<div class="step-motor-card">
+  <h4>Step Motor Data</h4>
+  <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ connectionStatus }}</span></p>
+  <div class="step-motor-data">
+    <table>
+      <tr>
+        <td class="label">ID:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.id | sevenSegmentHybride }}</span></td>
+        <td class="label">Accel:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.acceleration | sevenSegmentHybride }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">RPM:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.rpm | sevenSegmentHybride }}</span></td>
+        <td class="label">Decel:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.deceleration | sevenSegmentHybride }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">Angle:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.angle | sevenSegmentHybride }}</span></td>
+        <td class="label">Torque:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.torque | sevenSegmentHybride }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">Steps:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.steps | sevenSegmentHybride }}</span></td>
+        <td class="label">Current:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.current | sevenSegmentHybride }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">Dir:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.direction | sevenSegmentHybride }}</span></td>
+        <td class="label">Voltage:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.voltage | sevenSegmentHybride }}</span></td>
+      </tr>
+      <tr>
+        <td class="label">Speed:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.speed | sevenSegmentHybride }}</span></td>
+        <td class="label">Power:</td>
+        <td class="value"><span class="seven-segment-hybride-display">{{ stepMotorData?.power | sevenSegmentHybride }}</span></td>
+      </tr>
+    </table>
+  </div>
+</div>

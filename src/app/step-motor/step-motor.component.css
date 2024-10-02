@@ -1,0 +1,79 @@
+/* src/app/components/step-motor/step-motor.component.css */
+.step-motor-card {
+  padding: 16px;
+  margin: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 650px;
+  height: 390px;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+table td {
+  padding: 8px 4px;
+  border: 1px solid #ddd;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+td.label {
+  width: 85px;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 15px;
+}
+
+td.value {
+  width: 150px;
+  text-align: left;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.connected {
+  color: green;
+}
+
+.disconnected {
+  color: red;
+}
+
+.seven-segment-display {
+  font-family: 'SevenSegment', sans-serif;
+  font-size: 22px;
+  color: #ff0000;
+  background-color: #000000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  letter-spacing: 3px;
+}
+
+.seven-segment-hybride-display {
+  font-family: 'SevenSegment', sans-serif;
+  font-size: 22px;
+  color: #ff0000;
+  background-color: #000000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  letter-spacing: 3px;
+}
+
+.nine-segment-display {
+  font-family: 'SevenSegment', sans-serif;
+  font-size: 22px;
+  color: #ff0000;
+  background-color: #000000;
+  padding: 2px 4px;
+  border-radius: 3px;
+  letter-spacing: 3px;
+}

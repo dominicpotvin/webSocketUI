@@ -1,32 +1,82 @@
+<!-- src/app/app.component.html -->
 <main class="main">
-  <div>
-    <h2 class="header">Websocket Tester</h2>
-  </div>
   <div class="colonne-verticale">
     <h1 class="title">{{ title }}</h1>
-    <button class="btn connect-btn" (click)="connect()">Connect</button>
-    <button class="btn disconnect-btn" (click)="disconnect()">Disconnect</button>
+    <button class="btn connect-btn" (click)="connectToServer1()">Connect to Server 1</button>
+    <button class="btn disconnect-btn" (click)="disconnectFromServer1()">Disconnect from Server 1</button>
+
+    <button class="btn connect-btn" (click)="connectToServer2()">Connect to Server 2</button>
+    <button class="btn disconnect-btn" (click)="disconnectFromServer2()">Disconnect from Server 2</button>
+
+    <button class="btn connect-btn" (click)="connectToServer3()">Connect to Server 3</button>
+    <button class="btn disconnect-btn" (click)="disconnectFromServer3()">Disconnect from Server 3</button>
+
+    <button class="btn connect-btn" (click)="connectToSSEServer()" [disabled]="isConnectedSSE">Connect to SSE Server</button>
+    <button class="btn disconnect-btn" (click)="disconnectFromSSEServer()" [disabled]="!isConnectedSSE">Disconnect from SSE Server</button>
+    
     <input type="text" [(ngModel)]="message" placeholder="Message" class="message-input">
-    <button class="btn send-btn" (click)="send()">Send</button>
+    <button class="btn send-btn" (click)="sendToServer1()">Send to Server 1</button>
+    <button class="btn send-btn" (click)="sendToServer2()">Send to Server 2</button>
+    
   </div>
 
-  <div class="ligne">
-    <div class="card">
-      <app-speedometer [rpmStr]="rpm" [gaugeValue]="calculatedGaugeRpmValue"></app-speedometer>
-      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
-    </div>
-    <div class="card">
-      <app-temperature [tempStr]="temperature" [gaugeValue]="calculatedGaugeTempValue"></app-temperature>
-      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
-    </div>
-    <div class="card">
-      <app-hygrometer [humStr]="humidity" [gaugeValue]="calculatedGaugeHumValue"></app-hygrometer>
-      <p>Status: <span [ngClass]="{'connected': isConnected, 'disconnected': !isConnected}">{{ state }}</span></p>
-    </div>
-  </div>
-  <div class="ligne">
-    <div class="card">
-      message: {{ message }}
+
+  <div class="cartes">
+    <div class="ligne">
+      <div class="card">
+        <app-speedometer [rpmStr]="rpm" [gaugeValue]="calculatedGaugeRpmValue"></app-speedometer>     
+        <p>Status Server 1: <span [ngClass]="{'connected': isConnected1, 'disconnected': !isConnected1}">{{ state1 }}</span></p>
+      </div>    
+      <div class="card">
+        <app-temperature
+          [tempStr]="temperature"
+          [gaugeValue]="calculatedGaugeTempValue"
+          [isConnected]="isConnected1"
+        ></app-temperature>     
+        <p>Status Server 1: <span [ngClass]="{'connected': isConnected1, 'disconnected': !isConnected1}">{{ state1 }}</span></p>
       </div>
+      <div class="card">
+        <app-hygrometer
+          [humStr]="humidity"
+          [gaugeValue]="calculatedGaugeHumValue"
+          [isConnected]="isConnected1"
+        ></app-hygrometer>      
+        <p>Status Server 1: <span [ngClass]="{'connected': isConnected1, 'disconnected': !isConnected1}">{{ state1 }}</span></p>
+      </div>
+      <div class="card">
+        <app-led 
+          [title]="'LED Control'"
+          [isConnected]="isConnected2"
+          [ledStateValue]="viewStateToggle"
+          (ledToggle)="onLedToggle($event)"
+        ></app-led> 
+        <p>Status Server 2: <span [ngClass]="{'connected': isConnected2, 'disconnected': !isConnected2}">{{ state2 }}</span></p>     
+      </div>
+    </div>
+    <div class="segment-display">
+      <my-seven-segment [value]="positionEncoder" [title]="PosTitle"></my-seven-segment>
+    </div>
+
+    <div class="ligne">
+      <app-step-motor
+        [isConnected]="isConnectedSSE"
+        [stepMotorData]="stepMotorData"
+      ></app-step-motor>      
+        <app-encoder-rotary
+          [isConnected]="isConnectedSSE"
+          [encoderRotaryData]="encoderRotaryData"
+        ></app-encoder-rotary>       
+    </div>
+
+    <div class="segment-display">
+      <my-seven-segment [value]="XvalueFromWebSocket" [title]="XaxisTitle"></my-seven-segment>
+    </div>
+    <div class="segment-display">
+      <my-seven-segment [value]="YvalueFromWebSocket" [title]="YaxisTitle"></my-seven-segment>
+    </div>
+    <div class="segment-display">
+      <my-seven-segment [value]="ZvalueFromWebSocket" [title]="ZaxisTitle"></my-seven-segment>
+    </div>
   </div>
+
 </main>

@@ -1,0 +1,33 @@
+/* src/app/components/encoder-rotary/encoder-rotary.component.css */
+.encoder-rotary-card {
+    padding: 16px;
+    margin: 0; /* Pas de marge pour le décalage négatif */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 650px; /* Largeur fixe */
+    height: 350px; /* Hauteur fixe */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans les dimensions */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .connected {
+    color: green;
+  }
+  
+  .disconnected {
+    color: red;
+  }
+  

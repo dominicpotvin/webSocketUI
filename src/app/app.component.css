@@ -1,13 +1,12 @@
 .main {
   display: grid;
-  grid-template-columns: 20% 80%;
-  height: 80vh; /* Utiliser seulement 90% de la hauteur de la fenêtre de visualisation */
+  grid-template-columns: 30% 70%;
+  height: 80vh; /* Utiliser seulement 80% de la hauteur de la fenêtre de visualisation */
   width: 100%;
 }
 
 .colonne-verticale {
   grid-column: 1 / 2;
-  grid-row: 1 / 4;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,6 +44,8 @@
   cursor: pointer;
   font-size: 16px;
   transition: background-color 0.3s ease, transform 0.2s;
+  width: 100%; /* Assurer que tous les boutons aient la même largeur */
+  max-width: 250px; /* Largeur maximale pour les boutons */
 }
 
 .connect-btn {
@@ -77,13 +78,22 @@
   transform: translateY(-2px);
 }
 
-.ligne {
+.cartes {
   grid-column: 2 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  height: 30%; /* Chaque ligne occupe un tiers de la hauteur totale de .main */
+  display: grid;
+  grid-template-rows: repeat(2, auto); /* Deux lignes */
+  gap: 20px; /* Espacement entre les lignes */
+  padding: 20px;
+}
+
+.ligne {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Quatre colonnes pour la première ligne */
+  gap: 20px; /* Espacement entre les cartes */
+}
+
+.ligne + .ligne {
+  grid-template-columns: repeat(2, 1fr); /* Deux colonnes pour la deuxième ligne */
 }
 
 .card {
@@ -96,12 +106,18 @@
   justify-content: center;
   margin: 20px;
   transition: transform 0.3s;
-  width: 250px; /* Taille fixe pour le carré, ajustez selon le besoin */
-  height: 250px; /* Taille fixe pour le carré, gardez la même valeur que la largeur pour un carré parfait */
+  width: 250px; /* Taille fixe pour les petites cartes */
+  height: 250px; /* Taille fixe pour les petites cartes */
 }
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+.card-large {
+  width: 650px; /* Largeur fixe de 650px */
+  height: 250px; /* Hauteur fixe de 250px */
+  padding: 10px; /* Padding pour le composant enfant */
 }
 
 .connected {
@@ -110,4 +126,24 @@
 
 .disconnected {
   color: red;
+}
+
+.segment-display {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+.segment-display my-seven-segment {
+  margin: 0 10px;
+}
+
+/* Custom CSS variables for my-seven-segment component */
+
+::root {
+  --seven-segment-font-size: 30px; /* Example custom value */
+  --seven-segment-color: blue; /* Example custom value */
+  --seven-segment-bg-color: lightgray; /* Example custom value */
+  --seven-segment-padding: 10px; /* Example custom value */
+  --seven-segment-border-radius: 15px; /* Example custom value */
 }
